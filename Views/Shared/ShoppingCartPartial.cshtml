@@ -1,0 +1,15 @@
+﻿<!-- _ShoppingCartPartial.cshtml -->
+@model List<Item>
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        Shopping Cart (@Model.Count)
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        @foreach (var item in Model)
+        {
+            <li>@item.Name - $@item.Price</li>
+        }
+        <li>Total: $@(Model.Sum(item => item.Price))</li>
+    </ul>
+</div>
