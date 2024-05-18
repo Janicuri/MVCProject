@@ -11618,19 +11618,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\janic\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\janic\\Desktop\\MVCProject\\MVCProject\\SnakeApplication\\SnakeApplication.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\ProjektMvc\\MVCProject\\SnakeApplication.csproj",
       "projectName": "SnakeApplication",
-      "projectPath": "C:\\Users\\janic\\Desktop\\MVCProject\\MVCProject\\SnakeApplication\\SnakeApplication.csproj",
-      "packagesPath": "C:\\Users\\janic\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\janic\\Desktop\\MVCProject\\MVCProject\\SnakeApplication\\obj\\",
+      "projectPath": "C:\\Users\\User\\Desktop\\ProjektMvc\\MVCProject\\SnakeApplication.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\ProjektMvc\\MVCProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\janic\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

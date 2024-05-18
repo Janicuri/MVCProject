@@ -14,9 +14,17 @@ namespace SnakeApplication.Controllers
             _logger = logger;
         }
 
+        public IActionResult Forma()
+
+        {
+            return View();
+        }
+        
+
         public IActionResult Index()
         {
-
+           
+            
             return View();
         }
         [Authorize]
