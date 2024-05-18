@@ -14,13 +14,13 @@ namespace SnakeApplication.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
-        string[] colors = { "red", "green", "blue","yellow","purple","orange","white","pink"};
-        public GameController (ApplicationDbContext context , UserManager<IdentityUser> userManager)
+        string[] colors = { "red", "green", "blue", "yellow", "purple", "orange", "white", "pink" };
+        public GameController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
-       
+
         public async Task<IActionResult> Index()
         {
             var user = User;
@@ -52,7 +52,7 @@ namespace SnakeApplication.Controllers
         }
         private bool ValidColor(string s)
         {
-            foreach(string c in colors)
+            foreach (string c in colors)
             {
                 if (c == s.ToLower())
                 {
@@ -78,26 +78,42 @@ namespace SnakeApplication.Controllers
         {
             string color = v.c;
             Debug.WriteLine(color);
-            if (color == null || color == "")
+            if (string.IsNullOrEmpty(color))
             {
                 return RedirectToAction("Fail");
             }
+
             Debug.WriteLine("WORKING");
             bool valid = ValidColor(color);
             if (valid)
             {
                 var user = User;
                 var userId = _userManager.GetUserId(user);
-                var player = await _context.players.Where(p => p.IdentityUserId == userId).ToListAsync();
-                player[0].Color = color;
-                _context.Update(player[0]);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Sukses");
+                var player = await _context.players.Where(p => p.IdentityUserId == userId).FirstOrDefaultAsync();
+                if (player != null)
+                {
+                    player.Color = color;
+                    _context.Update(player);
+                    await _context.SaveChangesAsync();
+
+                    // Set the color preference in a cookie
+                    CookieOptions options = new CookieOptions
+                    {
+                        Expires = DateTime.Now.AddDays(7),
+                        Secure = true
+                    };
+                    Response.Cookies.Append("ColorPreference", color, options);
+
+                    return RedirectToAction("Sukses");
+                }
             }
+
             return RedirectToAction("Fail");
-            
         }
-        [AllowAnonymous]
+
+   
+    
+    [AllowAnonymous]
         public async Task<IActionResult> Leaderboard()
         {
             var lista = await _context.players.OrderByDescending(p => p.Score).ToListAsync();
