@@ -1047,3 +1047,4 @@ C:\Users\janic\Desktop\MVCProject\MVCProject\SnakeApplication\obj\Debug\net6.0\r
 C:\Users\janic\Desktop\MVCProject\MVCProject\SnakeApplication\obj\Debug\net6.0\SnakeApplication.pdb
 C:\Users\janic\Desktop\MVCProject\MVCProject\SnakeApplication\obj\Debug\net6.0\SnakeApplication.genruntimeconfig.cache
 C:\Users\janic\Desktop\MVCProject\MVCProject\SnakeApplication\obj\Debug\net6.0\ref\SnakeApplication.dll
+C:\Users\janic\Desktop\MVCProject\MVCProject\SnakeApplication\obj\Debug\net6.0\SnakeApplication.sourcelink.json
