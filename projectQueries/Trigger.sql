@@ -8,7 +8,7 @@ SELECT @id = Id,@username=UserName FROM inserted
 
 SET @username = dbo.GiveUserName(@username)
 
-INSERT INTO players([Name],IdentityUserId,Color,score) VALUES(@username,@id,'red',0)
+INSERT INTO players([Name],IdentityUserId,Color,score,Bucks,CurrentItemUrl) VALUES(@username,@id,'red',0,0,'')
 
 END
 

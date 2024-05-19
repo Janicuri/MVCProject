@@ -16,5 +16,7 @@ namespace SnakeApplication.Models
 
         public string IdentityUserId { get; set; }  
         public virtual IdentityUser User { get; set; }
+        public int Bucks {  get; set; }
+        public string? CurrentItemUrl { get; set; }
     }
 }
