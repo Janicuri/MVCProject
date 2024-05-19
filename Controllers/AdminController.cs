@@ -6,6 +6,8 @@ using SnakeApplication.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace SnakeApplication.Controllers
@@ -120,5 +122,11 @@ namespace SnakeApplication.Controllers
             await UserManager.AddToRoleAsync(user, name);
             return RedirectToAction("Index");
         }
+
+        
+
+
+
     }
+
 }

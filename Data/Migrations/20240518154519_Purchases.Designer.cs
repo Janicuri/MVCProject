@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SnakeApplication.Data;
 
@@ -11,9 +12,10 @@ using SnakeApplication.Data;
 namespace SnakeApplication.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240518154519_Purchases")]
+    partial class Purchases
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,8 +236,8 @@ namespace SnakeApplication.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Price")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -250,16 +252,10 @@ namespace SnakeApplication.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Bucks")
-                        .HasColumnType("int");
-
                     b.Property<string>("Color")
                         .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("CurrentItemUrl")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdentityUserId")
                         .IsRequired()
@@ -291,14 +287,17 @@ namespace SnakeApplication.Data.Migrations
                     b.Property<int>("ItemId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserId1")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ItemId");
 
-                    b.HasIndex("PlayerId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("purchases");
                 });
@@ -373,15 +372,13 @@ namespace SnakeApplication.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SnakeApplication.Models.Player", "player")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId1");
+
+                    b.Navigation("User");
 
                     b.Navigation("item");
-
-                    b.Navigation("player");
                 });
 #pragma warning restore 612, 618
         }

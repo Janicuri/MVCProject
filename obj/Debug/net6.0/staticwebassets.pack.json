@@ -5,6 +5,30 @@
       "PackagePath": "staticwebassets\\SnakeApplication.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\janic\\Desktop\\MVCProject\\MVCProject\\SnakeApplication\\wwwroot\\Images\\art.jpg",
+      "PackagePath": "staticwebassets\\Images\\art.jpg"
+    },
+    {
+      "Id": "C:\\Users\\janic\\Desktop\\MVCProject\\MVCProject\\SnakeApplication\\wwwroot\\Images\\happy.jpg",
+      "PackagePath": "staticwebassets\\Images\\happy.jpg"
+    },
+    {
+      "Id": "C:\\Users\\janic\\Desktop\\MVCProject\\MVCProject\\SnakeApplication\\wwwroot\\Images\\heart.jpg",
+      "PackagePath": "staticwebassets\\Images\\heart.jpg"
+    },
+    {
+      "Id": "C:\\Users\\janic\\Desktop\\MVCProject\\MVCProject\\SnakeApplication\\wwwroot\\Images\\imazh.jpg",
+      "PackagePath": "staticwebassets\\Images\\imazh.jpg"
+    },
+    {
+      "Id": "C:\\Users\\janic\\Desktop\\MVCProject\\MVCProject\\SnakeApplication\\wwwroot\\Images\\shapes.jpg",
+      "PackagePath": "staticwebassets\\Images\\shapes.jpg"
+    },
+    {
+      "Id": "C:\\Users\\janic\\Desktop\\MVCProject\\MVCProject\\SnakeApplication\\wwwroot\\Images\\star.jpeg",
+      "PackagePath": "staticwebassets\\Images\\star.jpeg"
+    },
+    {
       "Id": "C:\\Users\\janic\\Desktop\\MVCProject\\MVCProject\\SnakeApplication\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

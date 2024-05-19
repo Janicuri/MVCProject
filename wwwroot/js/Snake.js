@@ -11,7 +11,9 @@ let dong = ""
 let tempx;
 let tempy;
 let have_lost = false
-
+let imageUrl = document.getElementById("url").innerHTML;
+const image = new Image(20, 20);
+image.src = imageUrl;
 let doc = document.getElementById("scr").innerHTML
 highscore = parseInt(doc)
 
@@ -27,11 +29,18 @@ function cube(px, py) {
     this.temppy
     this.color = ParentColor
     this.show = function () {
-        c.beginPath()
-        c.fillStyle = this.color
-        c.fillRect(this.px, this.py, this.r, this.r)
-        c.stroke()
-        c.closePath()
+        if (imageUrl != "" && imageUrl != undefined && imageUrl != null) {
+            c.beginPath()
+            c.drawImage(image, this.px, this.py, this.r, this.r)
+            c.closePath()
+        }
+        else {
+            c.beginPath()
+            c.fillStyle = ParentColor
+            c.fillRect(this.px, this.py, this.r, this.r)
+            c.stroke()
+            c.closePath()
+        }
     }
     this.followHead = function () {
         this.px = tempx
@@ -55,11 +64,18 @@ class Snake {
         this.d = "none"
     }
     show() {
-        c.beginPath()
-        c.fillStyle = ParentColor
-        c.fillRect(this.px, this.py, this.r, this.r)
-        c.stroke()
-        c.closePath()
+        if (imageUrl != "" && imageUrl != undefined && imageUrl != null) {
+            c.beginPath()
+            c.drawImage(image, this.px, this.py, this.r, this.r)
+            c.closePath()
+        }
+        else {
+            c.beginPath()
+            c.fillStyle = ParentColor
+            c.fillRect(this.px, this.py, this.r, this.r)
+            c.stroke()
+            c.closePath()
+        }
     }
     move() {
         this.px += this.xvel

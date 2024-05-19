@@ -7,6 +7,7 @@ namespace SnakeApplication.Data
     {
         public DbSet<Player> players { get; set; }
         public DbSet<Item> items { get; set; }
+        public DbSet<Purchase> purchases { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

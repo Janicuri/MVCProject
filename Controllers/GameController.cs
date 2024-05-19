@@ -6,6 +6,7 @@ using SnakeApplication.Models;
 using System.Security.Claims;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace SnakeApplication.Controllers
 {
@@ -104,10 +105,46 @@ namespace SnakeApplication.Controllers
 
             return View(lista);
         }
+        
+ 
+        [HttpGet]
+        public async Task<IActionResult> Profile()
+        {
+            var user = User;
+            var userId = _userManager.GetUserId(user);
+            var playerId = await _context.players.Where(p =>p.IdentityUserId == userId).ToListAsync();
+            var playerPurchases = await _context.purchases.Where(e => e.PlayerId == playerId[0].Id).ToListAsync();
+            List<int> purchasesItemsIds = playerPurchases.Select(p => p.ItemId).ToList();
+            var playerItems = await _context.items.Where(e => purchasesItemsIds.Contains(e.Id)).ToListAsync();
+            PlayerProfile p = new PlayerProfile
+            {
+                player = playerId[0],
+                items = playerItems
+            };
 
+            return View(p);
+        }
 
-
-       //Edit color page to do
+        [HttpPost]
+        
+        public async Task<string> Equip(int ItemId)
+        {
+            try
+            {
+                var user = User;
+                var UserId = _userManager.GetUserId(user);
+                var playerId = await _context.players.Where(e => e.IdentityUserId == UserId).ToListAsync();
+                var item = await _context.items.Where(i => i.Id == ItemId).ToListAsync();
+                Player p = playerId[0];
+                p.CurrentItemUrl = item[0].ImageUrl;
+                _context.Update(p);
+                _context.SaveChanges();
+                return "Success";
+            }
+            catch (Exception ex) { 
+                return ex.Message;
+            }
+        }
 
     }
 }
