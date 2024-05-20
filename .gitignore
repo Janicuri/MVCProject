@@ -1,9 +1,3 @@
 .vs/
 bin/
 obj/
-
-Debug/
-Release/
-net6.0/
-*.exe
-*.dll
