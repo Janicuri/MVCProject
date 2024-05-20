@@ -1,0 +1,39 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  background-color:aliceblue;
+
+}
+body a{
+    text-decoration:none;
+    transition: color 0.3s ease;
+    margin-top:20px;
+    
+}
+body  h1.display-4{
+    font-family:'Sans Serif Collection';
+    color:black;
+ 
+}
+    body h1.display-4:hover {
+       
+        color: darkslateblue;
+    }
+    li.nav-item{
+        font-family:'Sans Serif Collection' 
+
+    }

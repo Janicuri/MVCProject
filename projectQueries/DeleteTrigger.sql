@@ -1,0 +1,11 @@
+CREATE OR ALTER TRIGGER DeletePlayer ON AspNetUsers AFTER DELETE AS 
+BEGIN 
+
+DECLARE @Id AS VARCHAR(50)
+
+SELECT @Id= Id FROM deleted
+
+DELETE FROM players WHERE IdentityUserId = @Id 
+
+
+END

@@ -1,0 +1,39 @@
+﻿@model SnakeApplication.Models.Player;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+body{
+    text-align: center;
+    background-color: rgb(23, 81, 126);
+}
+#core {
+    display:flex;
+    justify-content: space-around;
+}
+img{
+    display: none;
+}
+label{
+    display:none;
+}
+    </style>
+    <title>Snake</title>
+</head>
+<body>
+    <div>
+        <div id="core">
+        <h5 id="score"></h5>
+        <h5 id="highscore"></h5>    
+    </div>
+        <canvas id="canvas" width = "495px" height="495px" style="border:1px solid black; background-color :black "></canvas>
+       
+    </div>
+    <label id="scr">@Model.Score</label>
+    <label id="clr">@Model.Color</label>
+    <label id="url">@Model.CurrentItemUrl</label>
+    <script src="/js/Snake.js"></script>
+
+</body>
+</html>
