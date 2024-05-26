@@ -27,7 +27,7 @@ namespace SnakeApplication.Controllers
             var user = User;
             var userId = _userManager.GetUserId(user);
             //Debug.WriteLine(userId);
-            var player = await _context.Players.Where(p => p.IdentityUserId == userId).ToListAsync();
+            var player = await _context.players.Where(p => p.IdentityUserId == userId).ToListAsync();
             return View(player[0]);
         }
         [HttpPost]
@@ -37,7 +37,7 @@ namespace SnakeApplication.Controllers
             {
                 var user = User;
                 var userId = _userManager.GetUserId(user);
-                var player = await _context.Players.Where(p => p.IdentityUserId == userId).ToListAsync();
+                var player = await _context.players.Where(p => p.IdentityUserId == userId).ToListAsync();
                 if (score > player[0].Score)
                 {
                     player[0].Score = score;
@@ -90,7 +90,7 @@ namespace SnakeApplication.Controllers
             {
                 var user = User;
                 var userId = _userManager.GetUserId(user);
-                var player = await _context.Players.Where(p => p.IdentityUserId == userId).FirstOrDefaultAsync();
+                var player = await _context.players.Where(p => p.IdentityUserId == userId).FirstOrDefaultAsync();
                 if (player != null)
                 {
                     player.Color = color;
@@ -117,7 +117,7 @@ namespace SnakeApplication.Controllers
     [AllowAnonymous]
         public async Task<IActionResult> Leaderboard()
         {
-            var lista = await _context.Players.OrderByDescending(p => p.Score).ToListAsync();
+            var lista = await _context.players.OrderByDescending(p => p.Score).ToListAsync();
 
             return View(lista);
         }
@@ -128,7 +128,7 @@ namespace SnakeApplication.Controllers
         {
             var user = User;
             var userId = _userManager.GetUserId(user);
-            var playerId = await _context.Players.Where(p =>p.IdentityUserId == userId).ToListAsync();
+            var playerId = await _context.players.Where(p =>p.IdentityUserId == userId).ToListAsync();
             var playerPurchases = await _context.purchases.Where(e => e.PlayerId == playerId[0].Id).ToListAsync();
             List<int> purchasesItemsIds = playerPurchases.Select(p => p.ItemId).ToList();
             var playerItems = await _context.items.Where(e => purchasesItemsIds.Contains(e.Id)).ToListAsync();
@@ -147,10 +147,21 @@ namespace SnakeApplication.Controllers
         {
             try
             {
+                
                 var user = User;
                 var UserId = _userManager.GetUserId(user);
-                var playerId = await _context.Players.Where(e => e.IdentityUserId == UserId).ToListAsync();
+                var playerId = await _context.players.Where(e => e.IdentityUserId == UserId).ToListAsync();
+                if(ItemId < 0)
+                {
+                    Player i = playerId[0];
+                    i.CurrentItemUrl = "";
+                    _context.Update(i);
+                    _context.SaveChanges();
+                    return "Success";
+                }
                 var item = await _context.items.Where(i => i.Id == ItemId).ToListAsync();
+                if (item == null)
+                    return "You do not have this item";
                 Player p = playerId[0];
                 p.CurrentItemUrl = item[0].ImageUrl;
                 _context.Update(p);
@@ -160,6 +171,24 @@ namespace SnakeApplication.Controllers
             catch (Exception ex) { 
                 return ex.Message;
             }
+        }
+        [Authorize(Roles ="Admin")]
+        [HttpGet]
+        public async Task<IActionResult> AdminPannel()
+        {
+            var items = await _context.items.ToListAsync();
+            var purchases = await _context.purchases.GroupBy(i => i.ItemId).Select(g => new ItemCountViewModel
+            {
+                ItemId = g.Key,
+                ItemCount = g.Count()
+
+            }).ToListAsync();
+            var viewmodel = new ItemPurchasesViewModel
+            {
+                items = items,
+                prices = purchases
+            };
+            return View(viewmodel);
         }
 
     }

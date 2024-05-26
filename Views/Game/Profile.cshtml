@@ -8,6 +8,7 @@
     <p>HighScore : @Model.player.Score</p>
     <p>Bucks : @Model.player.Bucks</p>
     <p>Color : @Model.player.Color.ToLower() </p>
+    <button onclick="UnEquip()">Use Color</button>
     <div>
         <h3>Owned Items</h3>
     @foreach(var item in Model.items)
@@ -25,6 +26,11 @@
 <script src="/lib/\jquery/dist/jquery.js"></script>
 
 <script>
+    function UnEquip() {
+        $.post(`Equip?ItemId=-1`, (response, status) => {
+            alert(response);
+        })
+    }
 
     function Equip(ItemId){
         debugger
