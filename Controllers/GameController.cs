@@ -147,9 +147,18 @@ namespace SnakeApplication.Controllers
         {
             try
             {
+                
                 var user = User;
                 var UserId = _userManager.GetUserId(user);
                 var playerId = await _context.players.Where(e => e.IdentityUserId == UserId).ToListAsync();
+                if(ItemId < 0)
+                {
+                    Player i = playerId[0];
+                    i.CurrentItemUrl = "";
+                    _context.Update(i);
+                    _context.SaveChanges();
+                    return "Success";
+                }
                 var item = await _context.items.Where(i => i.Id == ItemId).ToListAsync();
                 if (item == null)
                     return "You do not have this item";
