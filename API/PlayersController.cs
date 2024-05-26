@@ -25,7 +25,7 @@ namespace SnakeApplication.API
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Player>>> Getplayers()
         {
-          if (_context.Players == null)
+          if (_context.Players== null)
           {
               return NotFound();
           }
