@@ -1,0 +1,44 @@
+﻿@model ItemPurchasesViewModel;
+
+<script type="text/javascript">
+    var model = @Html.Raw(Json.Serialize(Model));
+
+</script>
+<div>
+    <canvas id="graph" aria - label="chart" height="250" width="580"></canvas>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.1/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.1/helpers.esm.min.js"></script>
+<script>
+    let c = ["red", "blue", "yellow", "purple", "green", "orange"];
+    let index = 0;
+    let items = [];
+    let prices = [];
+    let colors = [];
+    for (let i = 0; i < model.items.length;i++){
+        items.push(model.items[i].name);
+        prices.push(model.prices[i].itemCount * model.items[i].price);
+        if (index == c.length)
+            index = 0;
+        colors.push(c[index]);
+        index++;
+
+    }
+    var chrt = document.getElementById("graph");
+    var graph = new Chart(chrt, {
+        type: 'bar',
+        data: {
+            labels: items,
+            datasets: [{
+                label: "Money spent on each item",
+                data: prices,
+                backgroundColor: colors,
+                borderColor : "black",
+                borderWidth:3
+            }],
+        },
+        options: {
+            responsive: true,
+        },
+    });
+</script>
