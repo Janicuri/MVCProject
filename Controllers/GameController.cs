@@ -151,6 +151,8 @@ namespace SnakeApplication.Controllers
                 var UserId = _userManager.GetUserId(user);
                 var playerId = await _context.players.Where(e => e.IdentityUserId == UserId).ToListAsync();
                 var item = await _context.items.Where(i => i.Id == ItemId).ToListAsync();
+                if (item == null)
+                    return "You do not have this item";
                 Player p = playerId[0];
                 p.CurrentItemUrl = item[0].ImageUrl;
                 _context.Update(p);
@@ -160,6 +162,24 @@ namespace SnakeApplication.Controllers
             catch (Exception ex) { 
                 return ex.Message;
             }
+        }
+        [Authorize(Roles ="Admin")]
+        [HttpGet]
+        public async Task<IActionResult> AdminPannel()
+        {
+            var items = await _context.items.ToListAsync();
+            var purchases = await _context.purchases.GroupBy(i => i.ItemId).Select(g => new ItemCountViewModel
+            {
+                ItemId = g.Key,
+                ItemCount = g.Count()
+
+            }).ToListAsync();
+            var viewmodel = new ItemPurchasesViewModel
+            {
+                items = items,
+                prices = purchases
+            };
+            return View(viewmodel);
         }
 
     }
