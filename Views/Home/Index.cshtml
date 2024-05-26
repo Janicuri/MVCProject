@@ -6,6 +6,239 @@
     <h1 class="display-4">Welcome</h1>
    <a asp-controller="Game" asp-action="Index"> <h1>Play Snake Game Now</h1></a>
 </div>
+<div class="hero-section">
+    <div class="hero-container">
+        <div class="photo-grid">
+            <img class="first-image" src="~/Images/mak.jpg" alt="Cat">
+            <img class="second-image" src="~/Images/art.jpg" alt="Coffe">
+            <img class="third-image" src="~/Images/happy.jpg" alt="Bus">
+        </div>
+    </div>
+</div>
 
+<!-- Reviews Section -->
+<section id="reviews" class="text-center">
+    <h2>All Our Reviews</h2>
+    <div class="reviews-list">
+        <div class="review-item">
+            <h3>Review Title 1</h3>
+            <img src="~/Images/k.jpg" alt="Player 1" class="player-photo" />
+            <p>Reviewer: John Doe</p>
+            <p>Review content goes here...</p>
+        </div>
+        <div class="review-item">
+            <h3>Review Title 2</h3>
+            <img src="~/Images/o.jpg" alt="Player 1" class="player-photo" />
+            <p>Reviewer: Jane Smith</p>
+            <p>Review content goes here...</p>
+        </div>
+        <!-- Add more reviews as needed -->
+    </div>
+</section>
+<button class="btn" onclick="toggleUpcomingGames()">A button for something cool <span class="ribbon">NEW</span></button>
 
+<div id="upcomingGames">
+    <h2>Upcoming Game Details</h2>
+    <p>Game 1: 2025/02/09, Racing </p>
+    <p>Game 2: 2024/11/08, Beauty</p>
+    <p>Game 3: 2025/01/01, Snake pro</p>
+    <!-- Add more game details as needed -->
+</div>
+<!-- Footer Section -->
+<footer class="footer text-center">
+    <div class="footer-content">
+        <div class="about-us">
+            <h3>About Us</h3>
+            <p>We are a leading gaming company dedicated to bringing you the best gaming experiences. Our team is passionate about creating engaging and innovative games that captivate players worldwide.</p>
+        </div>
+        <div class="footer-details">
+            <p>&copy; 2024 Your Company. All rights reserved.</p>
+            <p>Website: www.yourcompany.com</p>
+            <p>Email: contact@yourcompany.com</p>
+        </div>
+    </div>
+</footer>
+<style>
+    .btn {
+        border: none;
+        border-radius: 5px;
+        padding: 12px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #282A35;
+        color: white;
+        position: relative;
+    }
 
+    .ribbon {
+        width: 60px;
+        font-size: 14px;
+        padding: 4px;
+        position: absolute;
+        right: -25px;
+        top: -12px;
+        text-align: center;
+        border-radius: 25px;
+        transform: rotate(20deg);
+        background-color: #ff9800;
+        color: white;
+    }
+
+    #upcomingGames {
+        display: none;
+        margin-top: 20px;
+        font-size: 16px;
+    }
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Upcoming Games Section */
+#upcoming-games {
+    background-color: #f8f9fa;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.games-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+     
+}
+
+    .game-item {
+    
+        background-size: cover; /* Cover the entire area */
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px;
+        width: 250px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: black; /* Adjust text color for better readability */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add text shadow for better readability */
+    }
+  
+
+    
+.game-item h3 {
+    margin-top: 0;
+}
+
+    .game-item-container {
+        display: flex;
+        align-items: center;
+        margin: 10px;
+    }
+
+    .photo-grid img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .photo-grid {
+        width: 100%;
+        min-height: 500px;
+        display: grid;
+        grid-template-columns: calc(66% - 5px) calc(34% - 5px);
+        grid-template-rows: calc(50% - 5px) calc(50% - 5px);
+        grid-gap: 10px;
+    }
+
+    .photo-grid-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .photo-grid .first-image {
+        grid-column: 1 / 2;
+        grid-row: 1 / span 2;
+    }
+
+    .photo-grid .second-image {
+        grid-column: 2 / 2;
+        grid-row: 1 / 2;
+    }
+
+    .photo-grid .third-image {
+        grid-column: 2 / 2;
+        grid-row: 2 / 2;
+    }
+/* Reviews Section */
+#reviews {
+   
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.reviews-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.review-item {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 250px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+        .review-item img.player-photo {
+            width: 100px; /* Adjust the width as needed */
+            height: 100px; /* Adjust the height as needed */
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+.review-item h3 {
+    margin-top: 0;
+}
+
+/* Footer Section */
+.footer {
+    background-color:lightblue;
+    color:black;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .about-us {
+        margin-bottom: 20px;
+    }
+
+    .footer-details p {
+        margin: 5px 0;
+    }
+</style>
+<script>
+    function toggleUpcomingGames() {
+        var x = document.getElementById("upcomingGames");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
