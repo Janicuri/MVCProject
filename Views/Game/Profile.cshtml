@@ -1,29 +1,95 @@
 ﻿@model SnakeApplication.Models.PlayerProfile;
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player Profile</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .profile-container {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .profile-header h3 {
+                font-size: 24px;
+                color: #333;
+            }
+
+            .profile-header p {
+                font-size: 18px;
+                color: #555;
+            }
+
+        .profile-items {
+            margin-top: 20px;
+        }
+
+        .profile-item {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .profile-item img {
+                border-radius: 10px;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .profile-item button {
+                margin-top: 10px;
+            }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+    </style>
+</head>
 
 
-
-<div>
-    <h3>Name : @Model.player.Name</h3>
-    <p>HighScore : @Model.player.Score</p>
-    <p>Bucks : @Model.player.Bucks</p>
-    <p>Color : @Model.player.Color.ToLower() </p>
-    <button onclick="UnEquip()">Use Color</button>
-    <div>
-        <h3>Owned Items</h3>
-    @foreach(var item in Model.items)
-    {
-        <p> @item.Name </p>
-        <img src="@item.ImageUrl" width="100" height="100"/>
-        <br />
-            <br />
-        <button onclick="Equip('@item.Id')">Equip</button>
-        <hr />
-    }
+<div class="container">
+    <div class="profile-container">
+        <div class="profile-header">
+            <h3>Name: @Model.player.Name</h3>
+            <p>HighScore: @Model.player.Score</p>
+            <p>Bucks: @Model.player.Bucks</p>
+            <p>Color: @Model.player.Color.ToLower()</p>
+            <button class="btn btn-danger" onclick="UnEquip()">Use Color</button>
+        </div>
+        <div class="profile-items">
+            <h3 class="text-center">Owned Items</h3>
+            <div class="row">
+                @foreach (var item in Model.items)
+                {
+                    <div class="col-md-4 profile-item">
+                        <p>@item.Name</p>
+                        <img src="@item.ImageUrl" class="img-fluid" width="100" height="100" alt="@item.Name" />
+                        <button class="btn btn-custom" onclick="Equip('@item.Id')">Equip</button>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </div>
 
-<script src="/lib/\jquery/dist/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script>
     function UnEquip() {

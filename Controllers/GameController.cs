@@ -21,7 +21,7 @@ namespace SnakeApplication.Controllers
             _context = context;
             _userManager = userManager;
         }
-
+      
         public async Task<IActionResult> Index()
         {
             var user = User;

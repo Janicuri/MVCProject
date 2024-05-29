@@ -1,56 +1,67 @@
 ﻿@model List<Item>
 
-<h1>Shopping Cart</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Image</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Name</td>
-                <td>@item.Price</td>
-                <td><img src="@item.ImageUrl" width="100" height="100"/></td>
-                <td><button onclick="purchase('@item.Id')">Buy Product</button></td>
-            </tr>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
         }
-    </tbody>
-</table>
-<script src="/lib/jquery/dist/jquery.js"></script>
-<script>
 
+        .card {
+            margin-bottom: 20px;
+        }
 
-    function purchase(itemId) {
-        itemId = parseInt(itemId)
-        let xml = new XMLHttpRequest();
-        xml.open("post", `ShoppingCart/Purchase/?id=${itemId}`)
-        xml.onreadystatechange = function () {
-            if (this.status == 200 && this.readyState == 4) {
-                alert(this.responseText)
+            .card img {
+                max-height: 200px;
+                object-fit: cover;
             }
-        }
-        xml.send()
-        
-       /* $.post("ShoppingCart/Purchase", {
-            id:itemId
-        },
-            function (data,status) {
-                switch(data){
-                    case "Success":
-                        alert("success");
-                        break;
-                    default:
-                        alert("error");
-                        break;
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Shopping Cart</h1>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="card-text">@item.Price</p>
+                            <button class="btn btn-primary" onclick="purchase('@item.Id')">Buy Product</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function purchase(itemId) {
+            itemId = parseInt(itemId);
+            let xml = new XMLHttpRequest();
+            xml.open("post", `ShoppingCart/Purchase/?id=${itemId}`);
+            xml.onreadystatechange = function () {
+                if (this.status == 200 && this.readyState == 4) {
+                    alert(this.responseText);
                 }
-            }
-
-        )*/
-    }
-</script>
+            };
+            xml.send();
+        }
+    </script>
+</body>
+</html>

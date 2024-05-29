@@ -5,6 +5,6 @@ namespace SnakeApplication.Models
     {
         [Required]
         [Display(Name = "Role")]
-        public string Name { get; set; }
+        public string  ? Name { get; set; }
     }
 }
