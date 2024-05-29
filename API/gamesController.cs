@@ -11,7 +11,7 @@ using SnakeApplication.Models;
 
 namespace SnakeApplication.API
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[Action]")]
     [ApiController]
     public class gamesController : ControllerBase
     {
@@ -51,7 +51,7 @@ namespace SnakeApplication.API
 
             return games;
         }
-        [HttpGet("GetUpcomingGames")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<games>>> GetUpcomingGames()
         {
             var upcomingGames = await _context.Games
