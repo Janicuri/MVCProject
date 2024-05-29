@@ -31,7 +31,7 @@ namespace SnakeApplication.Controllers
         public async Task<string> Purchase(int id)
         {
 
-            var player = await _context.players.Where(e => e.IdentityUserId == _userManager.GetUserId(User)).ToListAsync();
+            var player = await _context.Players.Where(e => e.IdentityUserId == _userManager.GetUserId(User)).ToListAsync();
             var purchaseList = await _context.purchases.Where(e => e.ItemId == id && e.PlayerId == player[0].Id).ToListAsync();
             if (purchaseList.Count > 0)
                 return "You have bought this item already";
